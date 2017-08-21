@@ -37,11 +37,11 @@ public class CurrencyServiceImpl implements CurrencyService{
         List<Currency> all = dao.all();
 
         Function<Currency,CurrencyView> mapCurrency = c ->{
-            CurrencyView view = new CurrencyView(
-                    String.valueOf(c.getId()),
-                    c.getCurrencyName(),
-                    c.getCurrencyCode()
-            );
+            CurrencyView view = new CurrencyView();
+            view.id =c.getId();
+            view.currencyName = c.getCurrencyName();
+            view.currencyCode = c.getCurrencyCode();
+
 
             log.info(view.toString());
 
@@ -56,10 +56,3 @@ public class CurrencyServiceImpl implements CurrencyService{
         return response;
     }
 }
-
-
-/*
-
-
-
- */

@@ -21,7 +21,7 @@ public class PaymentsDaoImpl implements PaymentsDao{
 
     @Override
     public List<Payment> all() {
-        TypedQuery<Payment> query = em.createQuery("SELECT p FROM Payments p", Payment.class);
+        TypedQuery<Payment> query = em.createQuery("SELECT p FROM Payment p", Payment.class);
         return query.getResultList();
     }
 }

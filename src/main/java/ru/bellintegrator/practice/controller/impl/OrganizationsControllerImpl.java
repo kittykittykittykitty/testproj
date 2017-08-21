@@ -11,6 +11,7 @@ import ru.bellintegrator.practice.service.OrganizationService;
 import ru.bellintegrator.practice.view.OrganizationsView;
 import ru.bellintegrator.practice.view.ResponseData;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
@@ -42,4 +43,12 @@ public class OrganizationsControllerImpl implements OrganizationsController {
     public ResponseData<List<OrganizationsView>> organizations() {
         return organizationService.organizations();
     }
+
+    @RequestMapping("/databaseError1")
+    String throwDatabaseException1() throws SQLException {
+        log.info("Throw SQLException");
+        throw new SQLException();
+    }
+
+
 }

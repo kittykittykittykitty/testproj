@@ -18,7 +18,7 @@ public class Currency {
      * Код валюты
      */
     @Column(name = "currency_code", nullable = false, length = 50)
-    private int currencyCode;
+    private String currencyCode;
 
     /**
      * Наименование валюты
@@ -26,11 +26,11 @@ public class Currency {
     @Column(name = "currency_name", nullable = false, length = 50)
     private String currencyName;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,11 +42,11 @@ public class Currency {
         this.version = version;
     }
 
-    public int getCurrencyCode() {
+    public String getCurrencyCode() {
         return currencyCode;
     }
 
-    public void setCurrencyCode(int currencyCode) {
+    public void setCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
     }
 

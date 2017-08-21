@@ -7,7 +7,7 @@ import ru.bellintegrator.practice.model.Currency;
 public class CurrencyView {
 
     @ApiModelProperty(hidden = true)
-    public String id;
+    public Integer id;
 
     public String currencyName;
 
@@ -17,7 +17,7 @@ public class CurrencyView {
     public CurrencyView() {
     }
 
-    public CurrencyView(String id, String currencyCode, String currencyName){
+    public CurrencyView(Integer id, String currencyCode, String currencyName){
         this.id = id;
         this.currencyCode = currencyCode;
         this.currencyName = currencyName;

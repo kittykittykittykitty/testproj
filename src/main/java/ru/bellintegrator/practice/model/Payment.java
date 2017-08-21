@@ -15,7 +15,7 @@ public class Payment {
     private Integer id;
 
     @Version
-    private int version;
+    private Integer version;
 
     @Column(name = "name", nullable = false, length = 256)
     private String name;

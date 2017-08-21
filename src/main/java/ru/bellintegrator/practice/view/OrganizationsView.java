@@ -1,6 +1,9 @@
 package ru.bellintegrator.practice.view;
 
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
 
 public class OrganizationsView {
 
@@ -11,24 +14,25 @@ public class OrganizationsView {
 
     public String legalAddress;
 
-    public int INN;
+    public String inn;
 
-    public int OGRN;
+    public String ogrn;
 
+    //for jackson
     public OrganizationsView() {
-
     }
 
-    public OrganizationsView(String name, String legalAddress, int INN, int OGRN) {
+    public OrganizationsView(String id, String name, String legalAddress, String inn, String ogrn) {
+        this.id = id;
         this.name = name;
         this.legalAddress = legalAddress;
-        this.INN = INN;
-        this.OGRN = OGRN;
+        this.inn = inn;
+        this.ogrn = ogrn;
     }
 
     @Override
     public String toString() {
-        return "{id:" + id + "; name:" + name + "; legalAddress:" + legalAddress + "; INN:" + INN + "; OGRN:" + OGRN + "}";
+        return "{id:" + id + "; name:" + name + "; legalAddress:" + legalAddress + "; inn:" + inn + "; ogrn:" + ogrn + "}";
     }
 
 }

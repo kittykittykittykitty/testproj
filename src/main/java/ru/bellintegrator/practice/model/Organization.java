@@ -3,13 +3,13 @@ package ru.bellintegrator.practice.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Organizations")
+@Table(name = "Organization")
 public class Organization {
 
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false, unique = true)
-    private int id;
+    private Integer id;
 
     @Version
     private int version;
@@ -21,10 +21,10 @@ public class Organization {
     private String legalAddress;
 
     @Column(name="inn", nullable = false, length = 10)
-    private int INN;
+    private String inn;
 
-    @Column(name="inn", nullable = false, length = 13)
-    private int OGRN;
+    @Column(name="ogrn", nullable = false, length = 13)
+    private String ogrn;
 
 
     public int getId() {
@@ -59,20 +59,20 @@ public class Organization {
         this.legalAddress = legalAddress;
     }
 
-    public int getINN() {
-        return INN;
+    public String getInn() {
+        return inn;
     }
 
-    public void setINN(int INN) {
-        this.INN = INN;
+    public void setInn(String inn) {
+        this.inn = inn;
     }
 
-    public int getOGRN() {
-        return OGRN;
+    public String getOgrn() {
+        return ogrn;
     }
 
-    public void setOGRN(int OGRN) {
-        this.OGRN = OGRN;
+    public void setOgrn(String ogrn) {
+        this.ogrn = ogrn;
     }
 
 }
