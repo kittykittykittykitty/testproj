@@ -2,6 +2,9 @@ package ru.bellintegrator.practice.model;
 
 import javax.persistence.*;
 
+/**
+ * Организация
+ */
 @Entity
 @Table(name = "Organization")
 public class Organization {
@@ -14,15 +17,27 @@ public class Organization {
     @Version
     private int version;
 
+    /**
+     * Название организации
+     */
     @Column(name = "organization_name", nullable = false, length = 256)
     private String name;
 
+    /**
+     * Адресс организации
+     */
     @Column(name = "legal_address", nullable = false, length = 256)
     private String legalAddress;
 
+    /**
+     * ИНН
+     */
     @Column(name="inn", nullable = false, length = 10)
     private String inn;
 
+    /**
+     * ???
+     */
     @Column(name="ogrn", nullable = false, length = 13)
     private String ogrn;
 

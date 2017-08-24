@@ -11,6 +11,7 @@ import ru.bellintegrator.practice.dao.BillDao;
 import ru.bellintegrator.practice.model.Bill;
 import ru.bellintegrator.practice.service.BillService;
 import ru.bellintegrator.practice.view.BillView;
+import ru.bellintegrator.practice.model.Payment;
 
 import java.util.List;
 import java.util.function.Function;
@@ -32,7 +33,7 @@ public class BillServiceImpl implements BillService {
     @Override
     @Transactional
     public void add(BillView view) {
-        Bill bill = new Bill(view.id, view.customer, view.manager);
+        Bill bill = new Bill(view.id, view.number, view.customer, view.phone, view.manager, view.date, view.curId, view.payments);
         dao.save(bill);
 
     }
@@ -48,8 +49,13 @@ public class BillServiceImpl implements BillService {
             BillView view = new BillView();
 
             view.id = b.getId();
+            view.number = b.getNumber();
             view.customer = b.getCustomer();
+            view.phone = b.getPhone();
             view.manager = b.getManager();
+            view.date = b.getDate();
+            view.curId = b.getCurId();
+            view.payments = b.getPayments();
 
             log.debug(view.toString());
 

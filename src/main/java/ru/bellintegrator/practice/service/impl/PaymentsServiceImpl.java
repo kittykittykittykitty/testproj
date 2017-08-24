@@ -41,7 +41,8 @@ public class PaymentsServiceImpl implements PaymentsService{
             PaymentsView view = new PaymentsView(
                     String.valueOf(p.getId()),
                     p.getName(),
-                    p.getPrice()
+                    p.getPrice(),
+                    p.getBills()
             );
 
             log.info(view.toString());

@@ -13,5 +13,7 @@ public interface BillController {
 
     List<BillView> bills();
 
+//    BillView bill(Integer id);
+
 
 }
