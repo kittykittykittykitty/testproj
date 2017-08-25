@@ -46,10 +46,6 @@ public class Organization {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getVersion() {
         return version;
     }

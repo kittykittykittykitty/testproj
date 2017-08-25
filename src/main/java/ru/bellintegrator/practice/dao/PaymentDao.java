@@ -4,7 +4,7 @@ import ru.bellintegrator.practice.model.Payment;
 
 import java.util.List;
 
-public interface PaymentsDao {
+public interface PaymentDao {
     /**
      * получить список всех услуг
      * @return

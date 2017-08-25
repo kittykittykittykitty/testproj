@@ -1,11 +1,9 @@
 package ru.bellintegrator.practice.view;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
-import ru.bellintegrator.practice.model.Bill;
 import ru.bellintegrator.practice.model.Currency;
-import ru.bellintegrator.practice.model.Payment;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,19 +24,20 @@ public class BillView {
 
     public Currency curId;
 
-    public List<Payment> payments;
+    public List<PaymentView> payments = new ArrayList<>();
 
     //для jackson
     public BillView() {
     }
 
-    public BillView(Integer id, String number, String customer, String phone, String manager, Date date, Currency curId, List<Payment> payments) {
+    public BillView(Integer id, String number, String customer, String phone, String manager, Date date, Currency curId, List<PaymentView> payments) {
         this.id = id;
         this.number = number;
         this.customer = customer;
         this.phone = phone;
         this.manager = manager;
         this.date = date;
+        this.curId = curId;
         this.payments = payments;
     }
 
@@ -51,9 +50,8 @@ public class BillView {
                 ";manager:" + manager +
                 ";date:" + date +
                 ";currencyId:" + curId +
-                ";payemnts:" + payments +
+                ";payments:" + payments +
                 "}";
     }
-
 }
 

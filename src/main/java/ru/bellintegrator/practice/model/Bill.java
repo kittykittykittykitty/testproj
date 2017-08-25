@@ -1,15 +1,13 @@
 package ru.bellintegrator.practice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import ru.bellintegrator.practice.view.PaymentView;
 
 import javax.persistence.*;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Квитанция
@@ -77,24 +75,24 @@ public class Bill {
     @JoinColumn(name = "cur_id")
     private Currency curId;
 
-    @ManyToMany(targetEntity = ru.bellintegrator.practice.model.Payment.class)
-    public List<Payment> payments = new ArrayList<>(0);
 
     /**
      * СПИСОК УСЛУГ TODO
      * Many to many relation for payyments
      * @return
      */
-//    @JoinTable(name = "BILL_PAYMENTS")
-    public List<Payment> getPayments() {
+    @ManyToMany(targetEntity = ru.bellintegrator.practice.model.Payment.class)
+    public List<PaymentView> payments = new ArrayList<>();
+
+    public List<PaymentView> getPayments() {
         return payments;
     }
 
-    public void setPayments(List<Payment> payments) {
+    public void setPayments(List<PaymentView> payments) {
         this.payments = payments;
     }
 
-    public Bill(Integer id, String number, String customer, String phone, String manager, Date date, Currency curId, List<Payment> payments) {
+    public Bill(Integer id, String number, String customer, String phone, String manager, Date date, Currency curId, List<PaymentView> payments) {
         this.id = id;
         this.number = number;
         this.customer = customer;
@@ -135,10 +133,6 @@ public class Bill {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public int getVersion() {

@@ -38,10 +38,6 @@ public class Currency {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public int getVersion() {
         return version;
     }

@@ -1,5 +1,8 @@
 package ru.bellintegrator.practice.controller.impl;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -12,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.bellintegrator.practice.controller.BillController;
+import ru.bellintegrator.practice.model.Payment;
 import ru.bellintegrator.practice.service.BillService;
 import ru.bellintegrator.practice.view.BillView;
 
+import java.util.Collection;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -50,18 +55,14 @@ public class BillControllerImpl implements BillController{
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @RequestMapping(value = "/addbill", method = {POST})
-    public void bill(@RequestBody BillView person) {
-        billService.add(person);
+    public void bill(@RequestBody BillView bill) {
+        billService.add(bill);
     }
 
     @Override
-    @ApiOperation(value = "getPersons", nickname = "getPersons", httpMethod = "GET")
+    @ApiOperation(value = "getBills", nickname = "getBills", httpMethod = "GET")
     @RequestMapping(value = "/list", method = {GET})
     public List<BillView> bills() {
         return billService.bills();
     }
-
-
-
-
 }

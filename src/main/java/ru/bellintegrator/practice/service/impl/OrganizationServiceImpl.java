@@ -1,6 +1,5 @@
 package ru.bellintegrator.practice.service.impl;
 
-import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.model.Organization;
 import ru.bellintegrator.practice.dao.OrganizationDaо;
 import ru.bellintegrator.practice.service.OrganizationService;
-import ru.bellintegrator.practice.view.OrganizationsView;
+import ru.bellintegrator.practice.view.OrganizationView;
 import ru.bellintegrator.practice.view.ResponseData;
 
 import java.util.List;
@@ -34,12 +33,12 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public ResponseData<List<OrganizationsView>> organizations() {
+    public ResponseData<List<OrganizationView>> organizations() {
 
         List<Organization> all = dao.all();
 
-        Function<Organization, OrganizationsView> mapOrganization = org -> {
-            OrganizationsView view = new OrganizationsView(
+        Function<Organization, OrganizationView> mapOrganization = org -> {
+            OrganizationView view = new OrganizationView(
                     String.valueOf(org.getId()),
                     org.getName(),
                     org.getLegalAddress(),
@@ -52,7 +51,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             return view;
         };
 
-        ResponseData<List<OrganizationsView>> response = new ResponseData<>();
+        ResponseData<List<OrganizationView>> response = new ResponseData<>();
         response.data = all.stream()
                 .map(mapOrganization)
                 .collect(Collectors.toList());

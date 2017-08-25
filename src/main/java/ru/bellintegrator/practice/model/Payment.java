@@ -17,27 +17,27 @@ public class Payment {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private Integer id;
+    public String id;
 
     @Version
-    private Integer version;
+    public Integer version;
 
     /**
      * Название услуги
      */
     @Column(name = "name", nullable = false, length = 256)
-    private String name;
+    public String name;
 
     /**
      * Цена услуги
      */
     @Column(name = "price", nullable = false)
-    private float price;
+    public float price;
 
     /**
      * Список квитанций для мапинга
      */
-    @ManyToMany(targetEntity = ru.bellintegrator.practice.model.Bill.class, mappedBy = "bill_id")
+    @ManyToMany(targetEntity = ru.bellintegrator.practice.model.Bill.class, mappedBy = "curId")
     public List<Bill> bills = new ArrayList<>();
 
     public List<Bill> getBills() {
@@ -48,12 +48,8 @@ public class Payment {
         this.bills = bills;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public int getVersion() {

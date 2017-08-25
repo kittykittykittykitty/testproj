@@ -7,11 +7,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.bellintegrator.practice.dao.PaymentsDao;
+import ru.bellintegrator.practice.dao.PaymentDao;
 import ru.bellintegrator.practice.model.Payment;
-import ru.bellintegrator.practice.service.PaymentsService;
-import ru.bellintegrator.practice.view.CurrencyView;
-import ru.bellintegrator.practice.view.PaymentsView;
+import ru.bellintegrator.practice.service.PaymentService;
+import ru.bellintegrator.practice.view.PaymentView;
 import ru.bellintegrator.practice.view.ResponseData;
 
 import java.util.List;
@@ -20,29 +19,28 @@ import java.util.stream.Collectors;
 
 @Service
 @Scope(value = "session", proxyMode = ScopedProxyMode.INTERFACES)
-public class PaymentsServiceImpl implements PaymentsService{
+public class PaymentServiceImpl implements PaymentService {
 
-    private final Logger log = LoggerFactory.getLogger(PaymentsServiceImpl.class);
+    private final Logger log = LoggerFactory.getLogger(PaymentServiceImpl.class);
 
-    private final PaymentsDao dao;
+    private final PaymentDao dao;
 
     @Autowired
-    public  PaymentsServiceImpl(PaymentsDao dao){
+    public PaymentServiceImpl(PaymentDao dao){
         this.dao = dao;
     }
 
     @Override
     @Transactional
-    public ResponseData<List<PaymentsView>> payments(){
+    public ResponseData<List<PaymentView>> payments(){
 
         List<Payment> all = dao.all();
 
-        Function<Payment,PaymentsView> mapPayments = p ->{
-            PaymentsView view = new PaymentsView(
+        Function<Payment,PaymentView> mapPayments = p ->{
+            PaymentView view = new PaymentView(
                     String.valueOf(p.getId()),
                     p.getName(),
-                    p.getPrice(),
-                    p.getBills()
+                    p.getPrice()
             );
 
             log.info(view.toString());
@@ -50,7 +48,7 @@ public class PaymentsServiceImpl implements PaymentsService{
             return view;
         };
 
-        ResponseData<List<PaymentsView>> response = new ResponseData<>();
+        ResponseData<List<PaymentView>> response = new ResponseData<>();
         response.data = all.stream()
                 .map(mapPayments)
                 .collect(Collectors.toList());

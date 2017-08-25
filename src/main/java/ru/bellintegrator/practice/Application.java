@@ -12,30 +12,24 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import ru.bellintegrator.practice.controller.BillController;
-import ru.bellintegrator.practice.controller.PaymentsController;
 import ru.bellintegrator.practice.controller.impl.BillControllerImpl;
 import ru.bellintegrator.practice.controller.impl.CurrencyControllerImpl;
-import ru.bellintegrator.practice.controller.impl.OrganizationsControllerImpl;
-import ru.bellintegrator.practice.controller.impl.PaymentsControllerImpl;
+import ru.bellintegrator.practice.controller.impl.OrganizationControllerImpl;
+import ru.bellintegrator.practice.controller.impl.PaymentControllerImpl;
 import ru.bellintegrator.practice.dao.OrganizationDaо;
 import ru.bellintegrator.practice.dao.impl.BillDaoImpl;
 import ru.bellintegrator.practice.dao.impl.CurrencyDaoImpl;
-import ru.bellintegrator.practice.dao.impl.PaymentsDaoImpl;
-import ru.bellintegrator.practice.service.PaymentsService;
+import ru.bellintegrator.practice.dao.impl.PaymentDaoImpl;
 import ru.bellintegrator.practice.service.impl.BillServiceImpl;
 import ru.bellintegrator.practice.service.impl.CurrencyServiceImpl;
 import ru.bellintegrator.practice.service.impl.OrganizationServiceImpl;
-import ru.bellintegrator.practice.service.impl.PaymentsServiceImpl;
+import ru.bellintegrator.practice.service.impl.PaymentServiceImpl;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Locale;
 
 import static springfox.documentation.builders.PathSelectors.regex;
@@ -44,9 +38,9 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @ImportResource("spring_mvc_config.xml")
 @SpringBootApplication
 @ComponentScan(basePackageClasses = {
-        OrganizationsControllerImpl.class, OrganizationServiceImpl.class, OrganizationDaо.class,
+        OrganizationControllerImpl.class, OrganizationServiceImpl.class, OrganizationDaо.class,
         CurrencyControllerImpl.class, CurrencyServiceImpl.class, CurrencyDaoImpl.class,
-        PaymentsControllerImpl.class, PaymentsServiceImpl.class, PaymentsDaoImpl.class,
+        PaymentControllerImpl.class, PaymentServiceImpl.class, PaymentDaoImpl.class,
         BillControllerImpl.class, BillServiceImpl.class, BillDaoImpl.class
 })
 public class Application {

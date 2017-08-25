@@ -5,7 +5,7 @@ import ru.bellintegrator.practice.model.Bill;
 
 import java.util.List;
 
-public class PaymentsView {
+public class PaymentView {
 
     @ApiModelProperty(hidden = true)
     public String id;
@@ -14,26 +14,23 @@ public class PaymentsView {
 
     public float price;
 
-    public List<Bill> bills;
+//    public List<Bill> bills;
 
     //for jackson
-    public PaymentsView(){
+    public PaymentView(){
     }
 
-    public PaymentsView(String id, String name, float price, List<Bill> bills){
+    public PaymentView(String id, String name, float price){
         this.id = id;
         this.name = name;
         this.price = price;
-        this.bills = bills;
     }
 
     @Override
     public String toString() {
         return "{id:" + id +
-                "; name:" +
-                name + "; price:" +
-                price +
-                ";bills:"+ bills +
+                "; name:" + name +
+                "; price:" + price +
                 "}";
     }
 }

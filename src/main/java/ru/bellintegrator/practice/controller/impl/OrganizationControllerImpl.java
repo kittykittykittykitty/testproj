@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.bellintegrator.practice.controller.OrganizationsController;
+import ru.bellintegrator.practice.controller.OrganizationController;
 import ru.bellintegrator.practice.service.OrganizationService;
-import ru.bellintegrator.practice.view.OrganizationsView;
+import ru.bellintegrator.practice.view.OrganizationView;
 import ru.bellintegrator.practice.view.ResponseData;
 
 import java.sql.SQLException;
@@ -20,14 +20,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @RequestMapping(value = "/organizations", produces = APPLICATION_JSON_VALUE)
-public class OrganizationsControllerImpl implements OrganizationsController {
+public class OrganizationControllerImpl implements OrganizationController {
 
-    private final Logger log = LoggerFactory.getLogger(OrganizationsControllerImpl.class);
+    private final Logger log = LoggerFactory.getLogger(OrganizationControllerImpl.class);
 
     private final OrganizationService organizationService;
 
     @Autowired
-    public OrganizationsControllerImpl(OrganizationService organizationService) {
+    public OrganizationControllerImpl(OrganizationService organizationService) {
         this.organizationService = organizationService;
     }
 
@@ -40,7 +40,7 @@ public class OrganizationsControllerImpl implements OrganizationsController {
     @Override
     @ApiOperation(value = "getOrganizations", nickname = "getOrganizations", httpMethod = "GET")
     @RequestMapping(value = "/list", method = {GET})
-    public ResponseData<List<OrganizationsView>> organizations() {
+    public ResponseData<List<OrganizationView>> organizations() {
         return organizationService.organizations();
     }
 

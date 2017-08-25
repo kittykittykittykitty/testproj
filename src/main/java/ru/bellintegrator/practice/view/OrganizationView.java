@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 
-public class OrganizationsView {
+public class OrganizationView {
 
     @ApiModelProperty(hidden = true)
     public String id;
@@ -19,10 +19,10 @@ public class OrganizationsView {
     public String ogrn;
 
     //for jackson
-    public OrganizationsView() {
+    public OrganizationView() {
     }
 
-    public OrganizationsView(String id, String name, String legalAddress, String inn, String ogrn) {
+    public OrganizationView(String id, String name, String legalAddress, String inn, String ogrn) {
         this.id = id;
         this.name = name;
         this.legalAddress = legalAddress;
