@@ -10,9 +10,9 @@ INSERT INTO `Organization` (`id`, `version`, `organization_name`, `legal_address
 VALUES (5, 0, 'Organization5', 'Penza, street 5, house 5', '5851206667', '5851266697890');
 
 
-INSERT INTO `Currency` (`id`, `version`, `currency_name`, `currency_code`) VALUES (1, 0, 'rubles', '1');
-INSERT INTO `Currency` (`id`, `version`, `currency_name`, `currency_code`) VALUES (2, 0, 'dollars', '2');
-INSERT INTO `Currency` (`id`, `version`, `currency_name`, `currency_code`) VALUES (3, 0, 'euro', '3');
+INSERT INTO `Currency` (`id`, `version`, `currency_name`, `currency_code`) VALUES (1, 0, 'rubles', '100a');
+INSERT INTO `Currency` (`id`, `version`, `currency_name`, `currency_code`) VALUES (2, 0, 'dollars', '2b');
+INSERT INTO `Currency` (`id`, `version`, `currency_name`, `currency_code`) VALUES (3, 0, 'euro', '3c');
 
 INSERT INTO `Payments` (`id`, `version`, `name`, `price`) VALUES (1, 0, 'pomyit stekla', 1000.0);
 INSERT INTO `Payments` (`id`, `version`, `name`, `price`) VALUES (2, 0, 'pomyit bumper', 2000.99);
