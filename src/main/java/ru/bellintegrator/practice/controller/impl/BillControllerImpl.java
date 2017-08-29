@@ -11,12 +11,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.bellintegrator.practice.controller.BillController;
+import ru.bellintegrator.practice.model.Bill;
 import ru.bellintegrator.practice.model.Payment;
 import ru.bellintegrator.practice.service.BillService;
+import ru.bellintegrator.practice.validator.BillValidator;
 import ru.bellintegrator.practice.view.BillView;
 
 import java.util.Collection;
@@ -32,15 +36,17 @@ public class BillControllerImpl implements BillController{
 
     private final Logger log = LoggerFactory.getLogger(BillControllerImpl.class);
 
-    private final BillService billService;
 
-    private final TaskExecutor executor;
+    private BillService billService;
 
     @Autowired
-    public BillControllerImpl(BillService billService, TaskExecutor executor) {
+    private BillValidator billValidator;
+
+    @Autowired
+    public BillControllerImpl(BillService billService) {
         this.billService = billService;
-        this.executor = executor;
     }
+
 
     @Override
     @RequestMapping(value = "/ping", method = {GET, POST})
@@ -55,14 +61,34 @@ public class BillControllerImpl implements BillController{
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @RequestMapping(value = "/addbill", method = {POST})
-    public void bill(@RequestBody BillView bill) {
+    public String bill(@RequestBody BillView bill, BindingResult result) {
+        billValidator.validate(bill, result);
+        if (result.hasErrors()) {
+            return "data is wrong";
+        }
         billService.add(bill);
+        return "Success";
     }
+
 
     @Override
     @ApiOperation(value = "getBills", nickname = "getBills", httpMethod = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
     @RequestMapping(value = "/list", method = {GET})
     public List<BillView> bills() {
         return billService.bills();
+    }
+
+
+    @Override
+    @ApiOperation(value = "getBill", nickname = "getBill", httpMethod = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
+    @RequestMapping(value = "/{id}", method = {GET})
+    public BillView bill( @PathVariable("id") Long id){
+        return billService.bill(id);
     }
 }

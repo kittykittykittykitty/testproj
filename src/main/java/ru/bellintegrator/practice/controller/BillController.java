@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.controller;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import ru.bellintegrator.practice.view.BillView;
 
@@ -9,11 +10,11 @@ public interface BillController {
 
     String ping();
 
-    void bill(@RequestBody BillView bill);
+    String bill(@RequestBody BillView bill, BindingResult result);
 
     List<BillView> bills();
 
-//    BillView bill(Integer id);
+    BillView bill(Long id);
 
 
 }

@@ -17,28 +17,26 @@ public class Payment {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    public String id;
+    private Integer id;
 
     @Version
-    public Integer version;
+    private Integer version;
 
     /**
      * Название услуги
      */
-    @Column(name = "name", nullable = false, length = 256)
-    public String name;
+    @Column(name = "name")
+    private String name;
 
     /**
      * Цена услуги
      */
-    @Column(name = "price", nullable = false)
-    public float price;
+    @Column(name = "price")
+    private Float price;
 
-    /**
-     * Список квитанций для мапинга
-     */
-    @ManyToMany(targetEntity = ru.bellintegrator.practice.model.Bill.class, mappedBy = "curId")
-    public List<Bill> bills = new ArrayList<>();
+    @ManyToMany(mappedBy = "payments", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    private List<Bill> bills = new ArrayList<>(0);
+
 
     public List<Bill> getBills() {
         return bills;
@@ -48,7 +46,7 @@ public class Payment {
         this.bills = bills;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -68,11 +66,31 @@ public class Payment {
         this.name = name;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public Payment(Integer id, String name, Float price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public Payment(Integer version, String name, Float price, List<Bill> bills) {
+        this.version = version;
+        this.name = name;
+        this.price = price;
+        this.bills = bills;
+    }
+
+    public Payment() {
+        this.id = null;
+        this.name = null;
+        this.price = null;
+        this.bills = null;
     }
 }

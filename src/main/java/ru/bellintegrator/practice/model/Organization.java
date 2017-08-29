@@ -1,17 +1,20 @@
 package ru.bellintegrator.practice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 /**
  * Организация
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "Organization")
 public class Organization {
 
     @Id
     @GeneratedValue
-    @Column(name = "id", nullable = false, unique = true)
+    @Column(name = "id")
     private Integer id;
 
     @Version
@@ -20,25 +23,25 @@ public class Organization {
     /**
      * Название организации
      */
-    @Column(name = "organization_name", nullable = false, length = 256)
+    @Column(name = "organization_name")
     private String name;
 
     /**
      * Адресс организации
      */
-    @Column(name = "legal_address", nullable = false, length = 256)
+    @Column(name = "legal_address")
     private String legalAddress;
 
     /**
      * ИНН
      */
-    @Column(name="inn", nullable = false, length = 10)
+    @Column(name="inn")
     private String inn;
 
     /**
      * ???
      */
-    @Column(name="ogrn", nullable = false, length = 13)
+    @Column(name="ogrn")
     private String ogrn;
 
 
@@ -85,5 +88,4 @@ public class Organization {
     public void setOgrn(String ogrn) {
         this.ogrn = ogrn;
     }
-
 }

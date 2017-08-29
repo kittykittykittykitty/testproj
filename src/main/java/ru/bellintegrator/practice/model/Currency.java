@@ -25,13 +25,13 @@ public class Currency {
     /**
      * Код валюты
      */
-    @Column(name = "currency_code", nullable = false, length = 50)
+    @Column(name = "currency_code")
     private String currencyCode;
 
     /**
      * Наименование валюты
      */
-    @Column(name = "currency_name", nullable = false, length = 50)
+    @Column(name = "currency_name")
     private String currencyName;
 
     public Integer getId() {

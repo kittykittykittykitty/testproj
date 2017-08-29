@@ -1,0 +1,19 @@
+Запросы
+
+curl localhost:8888/bills/addbill -H "Content-Type: application/json" -X POST -d '{"number":"585-02-01", "customer":"Карпачева Марина Сергеевна", "phone":"1 800 5551212", "manager":"Карпов Алексей Александрович", "date":"2012-09-18", "curId":{"id":"2"}}, "payments":[{"id":"1", "name":"Install win xp","price":"21000.0"}]}'
+
+curl localhost:8888/bills/addbill -H "Content-Type: application/json" -X POST -d '{"number":"585-02-01", "customer":"Карпачева Марина Сергеевна", "phone":"1 800 5551212", "manager":"Карпов Алексей Александрович", "date":"2012-09-17", "curId":{"id":"1"}}, "payments":[{"id":"2", "name":"Установка пакета Microsoft Office":"2000.99"}, {"id":"1", "name":"Установка, настройка  Windows XP","price":"21000.0"}]}'
+
+curl localhost:8888/bills/addbill -H "Content-Type: application/json" -X POST -d '{"number":"111A111", "customer":"Customer Cuustomer Rrrr", "phone":"1 800 5551212", "manager":"Manager Manager Кошка", "date":"2012-09-17", "curId":{"id":"1"}, "orgId":{"id:"1"}, "payments":[{"id":"1", "name":"pomyit stekla","price":"1000.0"}]}'
+
+
+REST
+localhost:8888/bills/addbill
+localhost:8888/bills/list
+localhost:8888/bills/{id}
+localhost:8888/payments/list
+localhost:8888/currency/list
+
+//TODO валидация
+//TODO обработка исключений
+//TODO связать со фронтом

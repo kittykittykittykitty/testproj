@@ -38,7 +38,7 @@ public class PaymentServiceImpl implements PaymentService {
 
         Function<Payment,PaymentView> mapPayments = p ->{
             PaymentView view = new PaymentView(
-                    String.valueOf(p.getId()),
+                    p.getId(),
                     p.getName(),
                     p.getPrice()
             );

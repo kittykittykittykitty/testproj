@@ -1,6 +1,8 @@
 package ru.bellintegrator.practice.controller.impl;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,9 @@ public class CurrencyControllerImpl implements CurrencyController{
     }
 
     @Override
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
     @ApiOperation(value = "getCurrency", nickname = "getCurrency", httpMethod = "GET")
     @RequestMapping(value = "/list", method = {GET})
     public ResponseData<List<CurrencyView>> currencies(){
